@@ -62,7 +62,7 @@ fun App(viewModel:ViewModel) {
                 }
             ){
                 SideNavItem(
-                    selected = viewModel.screen ==ViewModel.Screen.HOME,  //控制扩展页是否开启
+                    selected = viewModel.screen ==ViewModel.Screen.HOME,
                     onClick = {viewModel.screen =ViewModel.Screen.HOME},
                     icon = { Icon(Icons.Default.Home,contentDescription = null) }
                 ){
