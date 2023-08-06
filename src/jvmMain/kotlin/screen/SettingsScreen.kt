@@ -27,7 +27,7 @@ import viewmodel.ViewModel
  *@time 20:18
  */
 @Composable
-fun SettingScreen(viewModel: ViewModel) {
+fun SettingScreen(viewModel: ViewModel,nekoViewModel: NekoViewModel) {
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -99,6 +99,34 @@ fun SettingScreen(viewModel: ViewModel) {
                         onCheckStateChange = {viewModel.enableAntiDeath = it}
                     )
                 }
+            }
+        }
+    }
+    Row(
+        modifier=Modifier.fillMaxWidth().padding(top=142.dp)
+    ){
+        Layer(
+            modifier =Modifier.size(140.dp).padding(start =2.dp,top=2.dp),
+            shape = RoundedCornerShape(8),
+            cornerRadius = 8.dp,
+            outsideBorder = true
+        ){
+            Column(
+                modifier = Modifier.fillMaxHeight().padding(start = 15.dp, top = 20.dp)
+            ) {
+                Text(text = "二次元动画", style = FluentTheme.typography.body)
+                CheckBox(
+                    modifier = Modifier.padding(5.dp),
+                    checked = (nekoViewModel.girlType==NekoViewModel.GirlType.NEKO),
+                    label = "猫猫",
+                    onCheckStateChange = {nekoViewModel.girlType=NekoViewModel.GirlType.NEKO},
+                )
+                CheckBox(
+                    modifier = Modifier.padding(5.dp),
+                    checked = (nekoViewModel.girlType==NekoViewModel.GirlType.MAN),
+                    label = "香蕉♂君",
+                    onCheckStateChange = {nekoViewModel.girlType=NekoViewModel.GirlType.MAN},
+                )
             }
         }
     }

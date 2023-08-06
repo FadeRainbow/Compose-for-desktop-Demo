@@ -14,4 +14,7 @@ class LoginViewModel {
     var account by mutableStateOf(TextFieldValue())
     var password by mutableStateOf(TextFieldValue())
     var showDialog by mutableStateOf(false)
+    var isHovered by  mutableStateOf(false)
+    var isHovered2 by  mutableStateOf(false)
+    var isHovered3 by  mutableStateOf(false)
 }

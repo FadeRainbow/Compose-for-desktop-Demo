@@ -90,7 +90,7 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel) {
            ){
             when(viewModel.screen){
                 ViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
-                ViewModel.Screen.SETTING -> SettingScreen(viewModel)
+                ViewModel.Screen.SETTING -> SettingScreen(viewModel,nekoViewModel)
                 ViewModel.Screen.TEST -> TestScreen(viewModel)
             }
            }

@@ -11,7 +11,15 @@ import androidx.compose.runtime.setValue
  */
 class NekoViewModel {
     var easingMode by mutableStateOf(EasingMode.IS_OUT)
+    var fadeMode by mutableStateOf(FadeMode.FADE_OUT)
+    var girlType by mutableStateOf(GirlType.NEKO)
     enum class EasingMode{
         IS_IN,IS_OUT
+    }
+    enum class FadeMode{
+        FADE_IN,FADE_OUT
+    }
+    enum class GirlType{
+        NEKO,MAN
     }
 }
