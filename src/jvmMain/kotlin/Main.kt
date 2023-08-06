@@ -28,9 +28,11 @@ import kotlinx.coroutines.delay
 import screen.HomeScreen
 import screen.SettingScreen
 import screen.TestScreen
+import utils.DrawNeko
 import view.AntiDeathDialog
 import view.DialogView
 import view.ExitWarning
+import view.ShowNeko
 import viewmodel.*
 import windows.LoginWindow
 import java.lang.Thread.sleep
@@ -38,7 +40,7 @@ import java.lang.Thread.sleep
 
 @Composable
 @Preview
-fun App(viewModel:ViewModel) {
+fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel) {
     Mica(modifier = Modifier.fillMaxSize()){//填充背景
         Row(
             modifier= Modifier.fillMaxSize()
@@ -63,7 +65,9 @@ fun App(viewModel:ViewModel) {
             ){
                 SideNavItem(
                     selected = viewModel.screen ==ViewModel.Screen.HOME,
-                    onClick = {viewModel.screen =ViewModel.Screen.HOME},
+                    onClick = {
+                        viewModel.screen =ViewModel.Screen.HOME
+                              },
                     icon = { Icon(Icons.Default.Home,contentDescription = null) }
                 ){
                     Text("老玩家")
@@ -71,7 +75,8 @@ fun App(viewModel:ViewModel) {
                 SideNavItem(
                     selected = viewModel.screen ==ViewModel.Screen.SETTING,  //控制扩展页是否开启
                     onClick = {
-                        viewModel.screen =ViewModel.Screen.SETTING },
+                        viewModel.screen =ViewModel.Screen.SETTING
+                              },
                     icon = { Icon(Icons.Default.Settings,contentDescription = null) }
                 ){
                     Text("射置")
@@ -84,12 +89,13 @@ fun App(viewModel:ViewModel) {
                cornerRadius = 8.dp
            ){
             when(viewModel.screen){
-                ViewModel.Screen.HOME ->  HomeScreen(viewModel)
+                ViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
                 ViewModel.Screen.SETTING -> SettingScreen(viewModel)
                 ViewModel.Screen.TEST -> TestScreen(viewModel)
             }
            }
     }
+        DrawNeko(nekoViewModel,viewModel)
     }
 }
 
@@ -102,6 +108,7 @@ fun main() = application {
     val antiViewModel = rememberSaveable { AntiDeathViewModel() }
     val windowViewModel = rememberSaveable { WindowViewModel() }
     val loginViewModel = rememberSaveable { LoginViewModel() }
+    val nekoViewModel = rememberSaveable { NekoViewModel() }
     //窗口
     LoginWindow(windowViewModel,loginViewModel,exitViewModel)
 
@@ -125,12 +132,13 @@ fun main() = application {
             FluentTheme(
                 colors = colors
             ) {
-                App(viewModel)
+                App(viewModel,nekoViewModel)
                 DialogView(viewModel)
                 if (viewModel.enableAntiDeath) {
                     AntiDeathDialog(antiViewModel, exitViewModel)
                 }
                 ExitWarning(exitViewModel)
+
             }
         }
     }

@@ -13,7 +13,7 @@ import kotlin.concurrent.thread
  *@date 2023/7/27
  *@time 20:17
  */
-class ViewModel {
+ class ViewModel {
     var screen by mutableStateOf(Screen.HOME)
     var expanded by mutableStateOf(true)
     var theme by mutableStateOf(ThemeMode.SYNC_SYSTEM)

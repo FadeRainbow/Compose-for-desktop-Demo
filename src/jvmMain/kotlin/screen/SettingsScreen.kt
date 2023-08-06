@@ -16,6 +16,8 @@ import com.konyaco.fluent.component.CheckBox
 import com.konyaco.fluent.component.Slider
 import com.konyaco.fluent.component.Switcher
 import com.konyaco.fluent.component.Text
+import utils.DrawNeko
+import viewmodel.NekoViewModel
 
 import viewmodel.ViewModel
 
