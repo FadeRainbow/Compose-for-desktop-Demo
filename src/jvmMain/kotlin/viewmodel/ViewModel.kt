@@ -23,7 +23,7 @@ import kotlin.concurrent.thread
     var exactTime by mutableStateOf(true)
     var enableAntiDeath by mutableStateOf(true)
     enum class Screen {
-        HOME, SETTING, TEST
+        HOME, SETTING, TEST,USER
     }
 
     enum class ThemeMode {

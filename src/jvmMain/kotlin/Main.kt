@@ -1,4 +1,5 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -6,8 +7,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.onPointerEvent
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
@@ -18,16 +24,14 @@ import com.konyaco.fluent.component.SideNav
 import com.konyaco.fluent.component.SideNavItem
 import com.konyaco.fluent.darkColors
 import com.konyaco.fluent.icons.Icons
-import com.konyaco.fluent.icons.regular.DeveloperBoard
-import com.konyaco.fluent.icons.regular.Home
-import com.konyaco.fluent.icons.regular.Settings
-import com.konyaco.fluent.icons.regular.TimePicker
+import com.konyaco.fluent.icons.regular.*
 import com.konyaco.fluent.lightColors
 
-import kotlinx.coroutines.delay
+
 import screen.HomeScreen
 import screen.SettingScreen
 import screen.TestScreen
+import screen.UserScreen
 import utils.DrawNeko
 import view.AntiDeathDialog
 import view.DialogView
@@ -38,10 +42,13 @@ import windows.LoginWindow
 import java.lang.Thread.sleep
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Preview
-fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel) {
-    Mica(modifier = Modifier.fillMaxSize()){//填充背景
+fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginViewModel,userViewModel:UserViewModel) {
+    Mica(
+        modifier = Modifier.fillMaxSize()
+    ){//填充背景
         Row(
             modifier= Modifier.fillMaxSize()
         ) {
@@ -63,6 +70,15 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel) {
                     }
                 }
             ){
+                SideNavItem(
+                    selected = viewModel.screen ==ViewModel.Screen.USER,
+                    onClick = {
+                        viewModel.screen =ViewModel.Screen.USER
+                    },
+                    icon = { Icon(Icons.Default.TabInprivateAccount,contentDescription = null) }
+                ){
+                    Text("用户信息")
+                }
                 SideNavItem(
                     selected = viewModel.screen ==ViewModel.Screen.HOME,
                     onClick = {
@@ -92,6 +108,7 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel) {
                 ViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
                 ViewModel.Screen.SETTING -> SettingScreen(viewModel,nekoViewModel)
                 ViewModel.Screen.TEST -> TestScreen(viewModel)
+                ViewModel.Screen.USER -> UserScreen(loginViewModel,userViewModel)
             }
            }
     }
@@ -109,6 +126,7 @@ fun main() = application {
     val windowViewModel = rememberSaveable { WindowViewModel() }
     val loginViewModel = rememberSaveable { LoginViewModel() }
     val nekoViewModel = rememberSaveable { NekoViewModel() }
+    val userViewModel = rememberSaveable { UserViewModel() }
     //窗口
     LoginWindow(windowViewModel,loginViewModel,exitViewModel)
 
@@ -132,13 +150,12 @@ fun main() = application {
             FluentTheme(
                 colors = colors
             ) {
-                App(viewModel,nekoViewModel)
+                App(viewModel,nekoViewModel,loginViewModel,userViewModel)
                 DialogView(viewModel)
                 if (viewModel.enableAntiDeath) {
                     AntiDeathDialog(antiViewModel, exitViewModel)
                 }
                 ExitWarning(exitViewModel)
-
             }
         }
     }

@@ -41,6 +41,13 @@ import kotlin.concurrent.thread
         }else{
             nekoViewModel.easingMode=NekoViewModel.EasingMode.IS_OUT
             nekoViewModel.fadeMode=NekoViewModel.FadeMode.FADE_OUT
+            if(viewModel.screen==ViewModel.Screen.USER){
+                nekoViewModel.easingMode=NekoViewModel.EasingMode.IS_IN
+                nekoViewModel.fadeMode=NekoViewModel.FadeMode.FADE_IN
+            }else{
+                nekoViewModel.easingMode=NekoViewModel.EasingMode.IS_OUT
+                nekoViewModel.fadeMode=NekoViewModel.FadeMode.FADE_OUT
+            }
         }
 
 
