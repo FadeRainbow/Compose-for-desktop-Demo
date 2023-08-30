@@ -34,11 +34,11 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "client/MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Exe, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "demo"
-            packageVersion = "1.0.0"
+            packageVersion = "1.0.1"
         }
     }
 }
