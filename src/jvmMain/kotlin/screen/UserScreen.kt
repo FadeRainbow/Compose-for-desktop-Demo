@@ -23,12 +23,6 @@ import com.konyaco.fluent.component.Text
 import viewmodel.LoginViewModel
 import viewmodel.UserViewModel
 
-/**
- *@author FadeRainbow
- *@date 2023/8/7
- *@time 21:26
- */
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun UserScreen(information: LoginViewModel,viewModel:UserViewModel){
     Row(

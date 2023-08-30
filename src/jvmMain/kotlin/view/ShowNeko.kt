@@ -1,16 +1,20 @@
 package view
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+//import androidx.compose.ui.text.style.TextForegroundStyle.Unspecified.alpha
 import androidx.compose.ui.unit.dp
 import com.konyaco.fluent.animation.FluentDuration
 import com.konyaco.fluent.animation.FluentEasing
@@ -25,6 +29,7 @@ import kotlin.concurrent.thread
  *@date 2023/8/6
  *@time 7:22
  */
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
  fun ShowNeko(nekoViewModel: NekoViewModel, viewModel: ViewModel){
     val width by animateDpAsState(
@@ -49,12 +54,23 @@ import kotlin.concurrent.thread
                 nekoViewModel.fadeMode=NekoViewModel.FadeMode.FADE_OUT
             }
         }
-
-
+//     var visible by remember { mutableStateOf(false) }
+//     LaunchedEffect(Unit){
+//         delay(1500)
+//         visible=true
+//     }
     val nekoImage = when(nekoViewModel.girlType) {
         NekoViewModel.GirlType.NEKO -> painterResource("bluecat.png")
         NekoViewModel.GirlType.MAN -> painterResource("man.jpg")
     }
+//    AnimatedVisibility(
+//        visible=visible,
+//        enter = expandHorizontally(expandFrom = Alignment.Start)+ fadeIn(tween(FluentDuration.LongDuration), initialAlpha = 0.1f),
+//    ){
+//        Image(painter = nekoImage,contentDescription = "NekoGOD")
+//    }
+
+
     Image(painter = nekoImage,contentDescription = "NekoGOD", alignment = Alignment.CenterEnd,modifier=Modifier.padding(end = width),alpha =alpha)
 
 }

@@ -146,6 +146,7 @@ fun main() = application {
                 ViewModel.ThemeMode.SYNC_SYSTEM -> if (isSystemInDarkTheme()) darkColors() else lightColors()
                 ViewModel.ThemeMode.DARK -> darkColors()
                 ViewModel.ThemeMode.LIGHT -> lightColors()
+
             }
             FluentTheme(
                 colors = colors
