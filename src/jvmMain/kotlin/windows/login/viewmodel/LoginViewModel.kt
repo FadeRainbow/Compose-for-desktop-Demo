@@ -1,4 +1,4 @@
-package viewmodel
+package windows.login.viewmodel
 import androidx.compose.runtime.*
 import androidx.compose.runtime.collection.mutableVectorOf
 import androidx.compose.ui.res.painterResource

@@ -1,25 +1,19 @@
-package screen
+package ui.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import com.konyaco.fluent.FluentTheme
 import com.konyaco.fluent.background.Layer
-import com.konyaco.fluent.background.Mica
 import com.konyaco.fluent.component.CheckBox
 import com.konyaco.fluent.component.Slider
 import com.konyaco.fluent.component.Switcher
 import com.konyaco.fluent.component.Text
-import utils.DrawNeko
-import viewmodel.NekoViewModel
+import ui.view.helper.viewmodel.NekoViewModel
 
-import viewmodel.ViewModel
+import client.viewmodel.MainViewModel
 
 /**
  *@author FadeRainbow
@@ -27,7 +21,7 @@ import viewmodel.ViewModel
  *@time 20:18
  */
 @Composable
-fun SettingScreen(viewModel: ViewModel,nekoViewModel: NekoViewModel) {
+fun SettingScreen(viewModel: MainViewModel, nekoViewModel: NekoViewModel) {
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -43,21 +37,21 @@ fun SettingScreen(viewModel: ViewModel,nekoViewModel: NekoViewModel) {
                 Text(text = "主题选择", style = FluentTheme.typography.body)
                 CheckBox(
                     modifier = Modifier.padding(5.dp),
-                    checked = (viewModel.theme==ViewModel.ThemeMode.SYNC_SYSTEM),
+                    checked = (viewModel.theme== MainViewModel.ThemeMode.SYNC_SYSTEM),
                     label = "同步系统",
-                    onCheckStateChange = {viewModel.theme=ViewModel.ThemeMode.SYNC_SYSTEM},
+                    onCheckStateChange = {viewModel.theme= MainViewModel.ThemeMode.SYNC_SYSTEM},
                 )
                 CheckBox(
                     modifier = Modifier.padding(5.dp),
-                    checked = (viewModel.theme==ViewModel.ThemeMode.DARK),
+                    checked = (viewModel.theme== MainViewModel.ThemeMode.DARK),
                     label = "黑暗主♂题",
-                    onCheckStateChange = {viewModel.theme=ViewModel.ThemeMode.DARK},
+                    onCheckStateChange = {viewModel.theme= MainViewModel.ThemeMode.DARK},
                 )
                 CheckBox(
                     modifier = Modifier.padding(5.dp),
-                    checked = (viewModel.theme==ViewModel.ThemeMode.LIGHT),
+                    checked = (viewModel.theme== MainViewModel.ThemeMode.LIGHT),
                     label = "亮涩主题",
-                    onCheckStateChange = {viewModel.theme=ViewModel.ThemeMode.LIGHT},
+                    onCheckStateChange = {viewModel.theme= MainViewModel.ThemeMode.LIGHT},
                 )
             }
         }
@@ -117,15 +111,15 @@ fun SettingScreen(viewModel: ViewModel,nekoViewModel: NekoViewModel) {
                 Text(text = "二次元动画", style = FluentTheme.typography.body)
                 CheckBox(
                     modifier = Modifier.padding(5.dp),
-                    checked = (nekoViewModel.girlType==NekoViewModel.GirlType.NEKO),
+                    checked = (nekoViewModel.girlType== NekoViewModel.GirlType.NEKO),
                     label = "猫猫",
-                    onCheckStateChange = {nekoViewModel.girlType=NekoViewModel.GirlType.NEKO},
+                    onCheckStateChange = {nekoViewModel.girlType= NekoViewModel.GirlType.NEKO},
                 )
                 CheckBox(
                     modifier = Modifier.padding(5.dp),
-                    checked = (nekoViewModel.girlType==NekoViewModel.GirlType.MAN),
+                    checked = (nekoViewModel.girlType== NekoViewModel.GirlType.MAN),
                     label = "香蕉♂君",
-                    onCheckStateChange = {nekoViewModel.girlType=NekoViewModel.GirlType.MAN},
+                    onCheckStateChange = {nekoViewModel.girlType= NekoViewModel.GirlType.MAN},
                 )
             }
         }

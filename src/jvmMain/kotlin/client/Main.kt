@@ -1,5 +1,6 @@
+package client
+
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,14 +10,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.input.pointer.PointerEventType
-import androidx.compose.ui.input.pointer.onPointerEvent
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import client.viewmodel.MainViewModel
 import com.konyaco.fluent.FluentTheme
 import com.konyaco.fluent.background.Layer
 import com.konyaco.fluent.background.Mica
@@ -28,24 +24,28 @@ import com.konyaco.fluent.icons.regular.*
 import com.konyaco.fluent.lightColors
 
 
-import screen.HomeScreen
-import screen.SettingScreen
-import screen.TestScreen
-import screen.UserScreen
+import ui.screen.HomeScreen
+import ui.screen.SettingScreen
+import ui.screen.TestScreen
+import ui.screen.UserScreen
 import utils.DrawNeko
-import view.AntiDeathDialog
-import view.DialogView
-import view.ExitWarning
-import view.ShowNeko
-import viewmodel.*
-import windows.LoginWindow
-import java.lang.Thread.sleep
+import ui.dialog.AntiDeathDialog
+import ui.dialog.DialogView
+import ui.dialog.ExitWarning
+import ui.dialog.helper.viewmodel.AntiDeathViewModel
+import ui.dialog.helper.viewmodel.ExitViewModel
+import ui.view.helper.viewmodel.NekoViewModel
+
+import windows.login.LoginWindow
+import windows.login.viewmodel.LoginViewModel
+import windows.login.viewmodel.UserViewModel
+import windows.login.viewmodel.WindowViewModel
 
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Preview
-fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginViewModel,userViewModel:UserViewModel) {
+fun App(viewModel: MainViewModel, nekoViewModel: NekoViewModel, loginViewModel: LoginViewModel, userViewModel: UserViewModel) {
     Mica(
         modifier = Modifier.fillMaxSize()
     ){//填充背景
@@ -61,8 +61,8 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginView
                 title = {Text("侧导栏")},
                 footer = {
                     SideNavItem(
-                        selected =  viewModel.screen==ViewModel.Screen.TEST,
-                        onClick = {viewModel.screen=ViewModel.Screen.TEST},
+                        selected =  viewModel.screen== MainViewModel.Screen.TEST,
+                        onClick = {viewModel.screen= MainViewModel.Screen.TEST},
                         icon = {Icon(Icons.Default.DeveloperBoard,contentDescription = null)}
                     ){
                         Text(text ="Test")
@@ -71,27 +71,27 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginView
                 }
             ){
                 SideNavItem(
-                    selected = viewModel.screen ==ViewModel.Screen.USER,
+                    selected = viewModel.screen == MainViewModel.Screen.USER,
                     onClick = {
-                        viewModel.screen =ViewModel.Screen.USER
+                        viewModel.screen = MainViewModel.Screen.USER
                     },
                     icon = { Icon(Icons.Default.TabInprivateAccount,contentDescription = null) }
                 ){
                     Text("用户信息")
                 }
                 SideNavItem(
-                    selected = viewModel.screen ==ViewModel.Screen.HOME,
+                    selected = viewModel.screen == MainViewModel.Screen.HOME,
                     onClick = {
-                        viewModel.screen =ViewModel.Screen.HOME
+                        viewModel.screen = MainViewModel.Screen.HOME
                               },
                     icon = { Icon(Icons.Default.Home,contentDescription = null) }
                 ){
                     Text("老玩家")
                 }
                 SideNavItem(
-                    selected = viewModel.screen ==ViewModel.Screen.SETTING,  //控制扩展页是否开启
+                    selected = viewModel.screen == MainViewModel.Screen.SETTING,  //控制扩展页是否开启
                     onClick = {
-                        viewModel.screen =ViewModel.Screen.SETTING
+                        viewModel.screen = MainViewModel.Screen.SETTING
                               },
                     icon = { Icon(Icons.Default.Settings,contentDescription = null) }
                 ){
@@ -105,10 +105,10 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginView
                cornerRadius = 8.dp
            ){
             when(viewModel.screen){
-                ViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
-                ViewModel.Screen.SETTING -> SettingScreen(viewModel,nekoViewModel)
-                ViewModel.Screen.TEST -> TestScreen(viewModel)
-                ViewModel.Screen.USER -> UserScreen(loginViewModel,userViewModel)
+                MainViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
+                MainViewModel.Screen.SETTING -> SettingScreen(viewModel,nekoViewModel)
+                MainViewModel.Screen.TEST -> TestScreen(viewModel)
+                MainViewModel.Screen.USER -> UserScreen(loginViewModel,userViewModel)
             }
            }
     }
@@ -120,7 +120,7 @@ fun App(viewModel:ViewModel,nekoViewModel:NekoViewModel,loginViewModel:LoginView
 
 
 fun main() = application {
-    val viewModel = rememberSaveable { ViewModel() }
+    val viewModel = rememberSaveable { MainViewModel() }
     val exitViewModel = rememberSaveable { ExitViewModel() }
     val antiViewModel = rememberSaveable { AntiDeathViewModel() }
     val windowViewModel = rememberSaveable { WindowViewModel() }
@@ -143,9 +143,9 @@ fun main() = application {
                 exitApplication()
             }
             val colors = when (viewModel.theme) {
-                ViewModel.ThemeMode.SYNC_SYSTEM -> if (isSystemInDarkTheme()) darkColors() else lightColors()
-                ViewModel.ThemeMode.DARK -> darkColors()
-                ViewModel.ThemeMode.LIGHT -> lightColors()
+                MainViewModel.ThemeMode.SYNC_SYSTEM -> if (isSystemInDarkTheme()) darkColors() else lightColors()
+                MainViewModel.ThemeMode.DARK -> darkColors()
+                MainViewModel.ThemeMode.LIGHT -> lightColors()
 
             }
             FluentTheme(

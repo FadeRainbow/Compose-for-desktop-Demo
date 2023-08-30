@@ -1,33 +1,18 @@
-package screen
+package ui.screen
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.interaction.HoverInteraction
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageShader
-import androidx.compose.ui.graphics.ShaderBrush
-import androidx.compose.ui.res.ResourceLoader
 import androidx.compose.ui.unit.dp
 import com.konyaco.fluent.FluentTheme
-import com.konyaco.fluent.animation.FluentDuration
-import com.konyaco.fluent.animation.FluentEasing
 import com.konyaco.fluent.component.TextField
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.yield
-import org.jetbrains.skia.Shader
-import utils.ColorUtils
 import utils.helloWorldHelper
-import view.ShowNeko
-import viewmodel.NekoViewModel
-import viewmodel.ViewModel
+import ui.view.helper.viewmodel.NekoViewModel
+import client.viewmodel.MainViewModel
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
 
@@ -37,7 +22,7 @@ import kotlin.system.exitProcess
  *@time 20:19
  */
 @Composable
-fun HomeScreen(viewModel: ViewModel,nekoViewModel:NekoViewModel) {
+fun HomeScreen(viewModel: MainViewModel, nekoViewModel: NekoViewModel) {
     Column(
         modifier = Modifier.padding(50.dp)
     ) {
@@ -59,7 +44,7 @@ fun HomeScreen(viewModel: ViewModel,nekoViewModel:NekoViewModel) {
     }
 }
 @Composable
-private fun DisplayCurrentTime(delay:Long,viewModel:ViewModel) {
+private fun DisplayCurrentTime(delay:Long,viewModel: MainViewModel) {
     var currentDateTime by remember { mutableStateOf(LocalDateTime.now()) }
     LaunchedEffect(Unit) {
         while (true) {

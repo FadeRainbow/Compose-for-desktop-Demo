@@ -1,15 +1,13 @@
-package view
+package ui.dialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.konyaco.fluent.component.Dialog
 import com.konyaco.fluent.component.Text
 import kotlinx.coroutines.delay
-import viewmodel.AntiDeathViewModel
-import viewmodel.ExitViewModel
-import viewmodel.ViewModel
+import ui.dialog.helper.viewmodel.AntiDeathViewModel
+import ui.dialog.helper.viewmodel.ExitViewModel
 import java.time.LocalDateTime
-import java.time.LocalTime
 import kotlin.system.exitProcess
 
 /**
@@ -18,7 +16,7 @@ import kotlin.system.exitProcess
  *@time 8:49
  */
 @Composable
-fun AntiDeathDialog(viewModel: AntiDeathViewModel,exitViewModel: ExitViewModel){
+fun AntiDeathDialog(viewModel: AntiDeathViewModel, exitViewModel: ExitViewModel){
     var currentTime = LocalDateTime.now()
     LaunchedEffect(Unit) {
         while (true) {

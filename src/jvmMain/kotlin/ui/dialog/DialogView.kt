@@ -1,12 +1,10 @@
-package view
+package ui.dialog
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import com.konyaco.fluent.component.Dialog
 import com.konyaco.fluent.component.Text
 
-import viewmodel.ViewModel
+import client.viewmodel.MainViewModel
 
 /**
  *@author FadeRainbow
@@ -14,7 +12,7 @@ import viewmodel.ViewModel
  *@time 8:12
  */
 @Composable
-fun DialogView(viewModel:ViewModel) {
+fun DialogView(viewModel: MainViewModel) {
     Dialog(
         title = "Compose杂交试验田",
         cancelButtonText = "取消",

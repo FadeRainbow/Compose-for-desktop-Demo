@@ -1,43 +1,34 @@
-package windows
+package windows.login
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.awt.ComposeWindow
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.input.pointer.*
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import viewmodel.WindowViewModel
+import windows.login.viewmodel.WindowViewModel
 import androidx.compose.ui.window.*
-import com.konyaco.fluent.FluentTheme
 import com.konyaco.fluent.animation.FluentDuration
 import com.konyaco.fluent.animation.FluentEasing
 import com.konyaco.fluent.background.Mica
 import com.konyaco.fluent.component.Button
 import com.konyaco.fluent.component.Icon
 import com.konyaco.fluent.component.TextField
-import view.ExitWarning
-import viewmodel.ExitViewModel
-import viewmodel.LoginViewModel
-import viewmodel.ViewModel
-import java.awt.FileDialog
+import ui.dialog.ExitWarning
+import ui.dialog.helper.viewmodel.ExitViewModel
+import windows.login.viewmodel.LoginViewModel
 import kotlin.system.exitProcess
 
 /**
@@ -47,7 +38,7 @@ import kotlin.system.exitProcess
  */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-private fun LoginView(viewModel:LoginViewModel,windowViewModel:WindowViewModel){
+private fun LoginView(viewModel: LoginViewModel, windowViewModel: WindowViewModel){
     Mica(modifier = Modifier.fillMaxSize()){
         Column(modifier = Modifier.fillMaxSize()){
             Row(
@@ -135,8 +126,8 @@ private fun LoginView(viewModel:LoginViewModel,windowViewModel:WindowViewModel){
 }
 @Composable
 fun LoginWindow(
-    windowViewModel:WindowViewModel
-    ,loginViewModel:LoginViewModel,
+    windowViewModel: WindowViewModel
+    , loginViewModel: LoginViewModel,
     exitViewModel: ExitViewModel
 )
 {

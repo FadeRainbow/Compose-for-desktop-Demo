@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import view.ShowNeko
-import viewmodel.NekoViewModel
-import viewmodel.ViewModel
+import ui.view.ShowNeko
+import ui.view.helper.viewmodel.NekoViewModel
+import client.viewmodel.MainViewModel
 
 /**
  *@author FadeRainbow
@@ -14,7 +14,7 @@ import viewmodel.ViewModel
  *@time 11:19
  */
 @Composable
-fun DrawNeko(nekoViewModel: NekoViewModel, viewModel: ViewModel){
+fun DrawNeko(nekoViewModel: NekoViewModel, viewModel: MainViewModel){
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement= Arrangement.Start){
         Column(
             modifier= Modifier.fillMaxHeight().padding(top=100.dp),

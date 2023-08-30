@@ -1,4 +1,4 @@
-package viewmodel
+package windows.login.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

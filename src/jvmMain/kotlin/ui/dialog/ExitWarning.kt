@@ -1,10 +1,8 @@
-package view
+package ui.dialog
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.WindowState
 import com.konyaco.fluent.component.Dialog
-import viewmodel.ExitViewModel
+import ui.dialog.helper.viewmodel.ExitViewModel
 
 /**
  *@author FadeRainbow
@@ -12,7 +10,7 @@ import viewmodel.ExitViewModel
  *@time 8:23
  */
 @Composable
-fun ExitWarning(viewModel:ExitViewModel){
+fun ExitWarning(viewModel: ExitViewModel){
     Dialog(
         title = "您真的要退出吗?",
         visible = viewModel.showDialog,

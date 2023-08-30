@@ -1,4 +1,4 @@
-package viewmodel
+package ui.dialog.helper.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
