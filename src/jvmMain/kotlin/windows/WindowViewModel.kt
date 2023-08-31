@@ -1,4 +1,4 @@
-package windows.login.viewmodel
+package windows
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,5 +11,6 @@ import androidx.compose.runtime.setValue
  */
 class WindowViewModel {
     var showClientWindow by mutableStateOf(false)
-    var showLoginWindow by mutableStateOf(true)
+    var showLoginWindow by mutableStateOf(false)
+    var showYuanShenWindow by mutableStateOf(true)
 }

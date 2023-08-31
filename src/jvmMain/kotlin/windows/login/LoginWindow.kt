@@ -18,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import windows.login.viewmodel.WindowViewModel
+import windows.WindowViewModel
 import androidx.compose.ui.window.*
 import com.konyaco.fluent.animation.FluentDuration
 import com.konyaco.fluent.animation.FluentEasing
