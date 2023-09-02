@@ -4,7 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,6 +20,10 @@ import windows.login.viewmodel.UserViewModel
 
 @Composable
 fun UserScreen(information: LoginViewModel, viewModel: UserViewModel){
+    /**
+     * this screen is show user information about account and password
+     * use loginViewModel and UserViewModel to save event data
+     */
     Row(
         modifier =Modifier.fillMaxWidth()
     ){

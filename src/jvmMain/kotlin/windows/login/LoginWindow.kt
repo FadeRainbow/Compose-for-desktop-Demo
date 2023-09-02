@@ -15,11 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.pointer.*
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import windows.WindowViewModel
-import androidx.compose.ui.window.*
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPosition
+import androidx.compose.ui.window.rememberWindowState
 import com.konyaco.fluent.animation.FluentDuration
 import com.konyaco.fluent.animation.FluentEasing
 import com.konyaco.fluent.background.Mica
@@ -28,6 +30,7 @@ import com.konyaco.fluent.component.Icon
 import com.konyaco.fluent.component.TextField
 import ui.dialog.ExitWarning
 import ui.dialog.helper.viewmodel.ExitViewModel
+import windows.WindowViewModel
 import windows.login.viewmodel.LoginViewModel
 import kotlin.system.exitProcess
 
@@ -88,10 +91,11 @@ private fun LoginView(viewModel: LoginViewModel, windowViewModel: WindowViewMode
                 modifier =Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ){
-
                 val width by animateDpAsState(if(viewModel.isHovered)250.dp else 100.dp,
                     tween(FluentDuration.LongDuration, easing = FluentEasing.FastDismissEasing)
                 )
+
+
                 Button(
                     modifier = Modifier.width(width)
                         .onPointerEvent(PointerEventType.Enter) {viewModel.isHovered=true}

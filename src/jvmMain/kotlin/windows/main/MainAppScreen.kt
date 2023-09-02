@@ -9,7 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import client.viewmodel.MainViewModel
@@ -36,9 +35,11 @@ import windows.login.viewmodel.UserViewModel
  *@date 2023/8/31
  *@time 9:23
  */
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 @Preview
+        /**
+         *this is main about client,show SideNav and some item to show screen(s)
+         */
 fun App(viewModel: MainViewModel, nekoViewModel: NekoViewModel, loginViewModel: LoginViewModel, userViewModel: UserViewModel) {
     Mica(
         modifier = Modifier.fillMaxSize()
@@ -99,7 +100,7 @@ fun App(viewModel: MainViewModel, nekoViewModel: NekoViewModel, loginViewModel: 
                 cornerRadius = 8.dp
             ){
                 when(viewModel.screen){
-                    MainViewModel.Screen.HOME ->  HomeScreen(viewModel,nekoViewModel)
+                    MainViewModel.Screen.HOME ->  HomeScreen(viewModel)
                     MainViewModel.Screen.SETTING -> SettingScreen(viewModel,nekoViewModel)
                     MainViewModel.Screen.TEST -> TestScreen(viewModel)
                     MainViewModel.Screen.USER -> UserScreen(loginViewModel,userViewModel)

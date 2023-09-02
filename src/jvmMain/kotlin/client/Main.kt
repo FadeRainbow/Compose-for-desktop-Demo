@@ -2,30 +2,30 @@
 
 package client
 
+
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.window.*
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPosition
+import androidx.compose.ui.window.application
+import androidx.compose.ui.window.rememberWindowState
 import client.viewmodel.MainViewModel
 import com.konyaco.fluent.FluentTheme
 import com.konyaco.fluent.darkColors
 import com.konyaco.fluent.lightColors
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-
-
 import ui.dialog.AntiDeathDialog
 import ui.dialog.DialogView
 import ui.dialog.ExitWarning
 import ui.dialog.helper.viewmodel.AntiDeathViewModel
 import ui.dialog.helper.viewmodel.ExitViewModel
 import ui.view.helper.viewmodel.NekoViewModel
-
+import windows.WindowViewModel
 import windows.login.LoginWindow
 import windows.login.viewmodel.LoginViewModel
 import windows.login.viewmodel.UserViewModel
-import windows.WindowViewModel
 import windows.main.App
 import windows.start.YuanShenWindow
 
@@ -66,6 +66,7 @@ fun main() = application {
                     AntiDeathDialog(antiViewModel, exitViewModel)
                 }
                 ExitWarning(exitViewModel)
+
             }
         }
     LaunchedEffect(Unit){
@@ -78,7 +79,6 @@ fun main() = application {
             client
         }
     }
-
     }
 
 

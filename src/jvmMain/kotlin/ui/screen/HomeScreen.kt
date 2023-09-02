@@ -1,17 +1,18 @@
 package ui.screen
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import client.viewmodel.MainViewModel
 import com.konyaco.fluent.FluentTheme
 import com.konyaco.fluent.component.TextField
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.yield
 import utils.helloWorldHelper
-import ui.view.helper.viewmodel.NekoViewModel
-import client.viewmodel.MainViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.exitProcess
@@ -22,7 +23,10 @@ import kotlin.system.exitProcess
  *@time 20:19
  */
 @Composable
-fun HomeScreen(viewModel: MainViewModel, nekoViewModel: NekoViewModel) {
+fun HomeScreen(viewModel: MainViewModel) {
+    /**
+     * now only can show time
+     */
     Column(
         modifier = Modifier.padding(50.dp)
     ) {
@@ -41,6 +45,11 @@ fun HomeScreen(viewModel: MainViewModel, nekoViewModel: NekoViewModel) {
         if (viewModel.text.text=== helloWorldHelper()){
             exitProcess(1145141919810.toInt())
         }
+
+        LaunchedEffect(Unit){
+            delay(6000)
+        }
+
     }
 }
 @Composable

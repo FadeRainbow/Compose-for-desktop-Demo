@@ -1,6 +1,5 @@
 package windows.start
 
-import androidx.compose.animation.*
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -9,19 +8,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
 import com.konyaco.fluent.animation.FluentDuration
 import com.konyaco.fluent.animation.FluentEasing
-import com.konyaco.fluent.component.Dialog
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 import windows.WindowViewModel
-import kotlin.math.exp
-import kotlin.math.expm1
 
 /**
  *@author FadeRainbow
@@ -31,18 +25,18 @@ import kotlin.math.expm1
 @Composable
 fun YuanShenWindow(viewModel:WindowViewModel){
     Window(
-        onCloseRequest = { },
+        onCloseRequest = {/*NotClose*/ },
         state = rememberWindowState(
             position = WindowPosition(Alignment.Center),
             width = 1366.dp, height = 768.dp
         ),
         visible = viewModel.showYuanShenWindow,
-        title = ""
+        title = "原神"
     ){
         var visible by remember { mutableStateOf(false) }
         var fadeType by remember { mutableStateOf(FadeType.FADE_OUT) }
         LaunchedEffect(Unit){
-            delay(2500)
+            delay(2510)
             fadeType=FadeType.FADE_IN
             visible=true
         }
