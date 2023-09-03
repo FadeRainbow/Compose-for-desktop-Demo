@@ -34,7 +34,7 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "client/MainKt"
+        mainClass = "dev/faderainbow/yuanshen/client/MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Exe, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "demo"
