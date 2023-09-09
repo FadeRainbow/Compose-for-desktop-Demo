@@ -7,7 +7,7 @@ package dev.faderainbow.yuanshen.config.sidenav
  */
 object SideNavRoute {
     enum class Screen {
-        HOME, SETTING, TEST,USER,ULTRAMAN
+        HOME, SETTING, TEST,USER,SAKANA
     }
 
     enum class ThemeMode {

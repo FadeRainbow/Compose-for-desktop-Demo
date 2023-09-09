@@ -21,6 +21,7 @@ import dev.faderainbow.yuanshen.ui.dialog.ExitWarning
 import dev.faderainbow.yuanshen.ui.dialog.helper.viewmodel.AntiDeathViewModel
 import dev.faderainbow.yuanshen.ui.dialog.helper.viewmodel.ExitViewModel
 import dev.faderainbow.yuanshen.ui.screen.home.HomeViewModel
+import dev.faderainbow.yuanshen.ui.screen.sakana.SakanaViewModel
 import dev.faderainbow.yuanshen.ui.screen.setting.SettingViewModel
 import dev.faderainbow.yuanshen.ui.view.helper.viewmodel.NekoViewModel
 import dev.faderainbow.yuanshen.windows.WindowViewModel
@@ -54,6 +55,7 @@ fun main() = application {
     val userViewModel = rememberSaveable { UserViewModel() }
     val settingViewModel = rememberSaveable { SettingViewModel() }
     val homeViewModel = rememberSaveable { HomeViewModel() }
+    val sakanaViewModel = rememberSaveable{ SakanaViewModel() }
         //实例化
     val op = YuanShenWindow(windowViewModel)
     val login = LoginWindow(windowViewModel,loginViewModel,exitViewModel)
@@ -82,7 +84,8 @@ fun main() = application {
                     loginViewModel = loginViewModel,
                     userViewModel = userViewModel,
                     homeViewModel = homeViewModel,
-                    settingViewModel = settingViewModel
+                    settingViewModel = settingViewModel,
+                    sakanaViewModel = sakanaViewModel
 
                 )
                 DialogView(viewModel)

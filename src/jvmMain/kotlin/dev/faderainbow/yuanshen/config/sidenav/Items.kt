@@ -5,7 +5,7 @@ import com.konyaco.fluent.component.Icon
 import com.konyaco.fluent.component.SideNavItem
 import com.konyaco.fluent.component.Text
 import com.konyaco.fluent.icons.Icons
-import com.konyaco.fluent.icons.regular.Attach
+import com.konyaco.fluent.icons.regular.FoodFish
 import com.konyaco.fluent.icons.regular.Home
 import com.konyaco.fluent.icons.regular.Settings
 import com.konyaco.fluent.icons.regular.TabInprivateAccount
@@ -47,12 +47,12 @@ import dev.faderainbow.yuanshen.windows.main.ClientViewModel
             Text("射置")
         }
         SideNavItem(
-            selected = viewModel.screen == SideNavRoute.Screen.ULTRAMAN,  //控制扩展页是否开启
+            selected = viewModel.screen == SideNavRoute.Screen.SAKANA,
             onClick = {
-                viewModel.screen = SideNavRoute.Screen.ULTRAMAN
+                viewModel.screen = SideNavRoute.Screen.SAKANA
             },
-            icon = { Icon(Icons.Default.Attach, contentDescription = null) }
+            icon = { Icon(Icons.Default.FoodFish, contentDescription = null) }
         ) {
-            Text("奥特曼")
+            Text("Sakana")
         }
 }
